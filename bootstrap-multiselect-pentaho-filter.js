@@ -1,3 +1,12 @@
+/*
+Powered by :
+    Bov BI - Business Intelligence para seu Agronegócio
+    FMM - Consultoria em Business Intelligence 
+
+Version 0.0.1
+
+*/
+
 var postExecutionSelect = function postExecutionSelect(optionAllValue, filterPlaceholder, nonSelectedText, allSelectedText, nSelectedText){
     
     $('#'+this.htmlObject+' select').multiselect({
