@@ -33,12 +33,13 @@ function preExecution(){
 
 ### Options ###
 
-For preChange default seleted members is possible to use:
+If the parameter of filter is empty is possible in preChange function configure who options by default wil be selected, the options are:
 
-* "all"
-* "all"
-* "last"
-* "last-n"
+* "all" - All options of multiselect will be selected.
+* "first" - The first option of multiselect will be selected.
+* "first-n" - The first n options of multiselect will be selected.
+* "last" - The last option of multiselect will be selected.
+* "last-n" - The last n options of multiselect will be selected.
 
 
 ```JavaScript
