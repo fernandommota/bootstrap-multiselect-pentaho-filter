@@ -16,8 +16,8 @@ function preExecution(){
 	        , '[Dimension Name].[All Member Name]'
 	        , 'Find dimension'
 	        , 'Select a member'
-	        ,'All members'
-	        ,' - members selected'
+	        , 'All members'
+	        , ' - members selected'
 	    )
     }
 
