@@ -33,7 +33,7 @@ function preExecution(){
 
 ### Options ###
 
-If the parameter of filter is empty is possible in preChange function configure who options by default wil be selected, the options are:
+If the parameter of filter is empty is possible in preChange function to configure who options by default wil be selected, the options are:
 
 * "all" - All options of multiselect will be selected.
 * "first" - The first option of multiselect will be selected.
