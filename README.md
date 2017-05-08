@@ -1,4 +1,4 @@
-# bootstrap-multiselect-pentaho-filter
+# Bootstrap Multiselect Pentaho Filter
 
 
 ### Overview ###
@@ -9,7 +9,7 @@
 
 * Install add-in for Bootstrap Multiselect plugin (https://github.com/davidstutz/bootstrap-multiselect) to use in Pentaho CDF dashboards.
 
-* Add the follow function in preExecution propertie of multiselect component in a Pentaho CDF/CDA/CDE dashboard.
+* Add the follow function in preExecution propertie of multiselect component in a Pentaho CDF/CDA/CDE dashboard:
 
 ```JavaScript
 function preExecution(){
