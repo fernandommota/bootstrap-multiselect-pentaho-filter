@@ -3,7 +3,7 @@
 
 ### Overview ###
 
-
+With this plugin the queries of your filters will become faster.
 
 ### Setup ###
 
