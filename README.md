@@ -3,7 +3,7 @@
 
 ### Overview ###
 
-With this plugin the queries of your filters will become faster.
+This plugin apply the All Member propertie of Mondrian Schema with a better user experience.
 
 ### Setup ###
 
