@@ -8,6 +8,13 @@ With this plugin the queries of your filters will become faster.
 ### Setup ###
 
 * Install add-in for Bootstrap Multiselect plugin (https://github.com/davidstutz/bootstrap-multiselect) to use in Pentaho CDF dashboards.
+- Import the follow files:
+
+```JavaScript
+<!-- Include the plugin CSS and JS: -->
+<script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
+<link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css"/>
+```
 
 * Add the follow function in preExecution propertie of multiselect component in a Pentaho CDF/CDA/CDE dashboard:
 
