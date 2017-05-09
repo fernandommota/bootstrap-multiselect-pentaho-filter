@@ -46,7 +46,7 @@ function preExecution(){
     }; 
     
     obj.postFetch = function postFetch(result){
-    	// set the option for set the default value of parameter
+    	// configure the option for set the default value of parameter
         postFetchSelect.call(this, result, 'all');   
     }; 
 } 
