@@ -30,12 +30,14 @@ function preExecution(){
     
     obj.postExecution = function f(){
         postExecutionSelect.call(
-            this
+            	this
+		// custom labels
 	        , '[Dimension Name].[All Member Name]'
 	        , 'Find dimension'
 	        , 'Select a member'
 	        , 'All members'
 	        , ' - members selected'
+		// end custom labels
 	    )
     }
 
