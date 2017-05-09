@@ -13,7 +13,7 @@ If a user select the all options available, the request value parameter will be 
 
 ### Setup ###
 
-* Install add-in for Bootstrap Multiselect plugin (https://github.com/davidstutz/bootstrap-multiselect) to use in Pentaho CDF dashboards.
+* Install the Bootstrap Multiselect plugin (https://github.com/davidstutz/bootstrap-multiselect) to use in Pentaho CDF dashboards.
 - Import the follow files:
 
 ```JavaScript
