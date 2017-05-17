@@ -16,8 +16,8 @@ Watch the talk in #PentahoDay2017 of Brazil (audio in portuguese).
 
 ### Setup ###
 
-* Install the Bootstrap Multiselect plugin (https://github.com/davidstutz/bootstrap-multiselect) to use in Pentaho CDF dashboards.
-- Import the follow files:
+* Clone the repository of Bootstrap Multiselect plugin (https://github.com/davidstutz/bootstrap-multiselect) to use in Pentaho CDF dashboards.
+- Import the follow files to your dashboard:
 
 ```JavaScript
 <!-- Include the plugin CSS and JS: -->
