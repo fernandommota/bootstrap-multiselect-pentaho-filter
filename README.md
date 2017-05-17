@@ -1,5 +1,8 @@
 # Bootstrap Multiselect Pentaho Filter
 
+Watch the presentation in #PentahoDay2017 of Brazil (audio in portuguese).
+
+[![Plugin Bootstrap Multiselect Pentaho Filter #PentahoDay2017](https://img.youtube.com/vi/cAJBJf_gbFM/0.jpg)](http://www.youtube.com/watch?v=cAJBJf_gbFM)
 
 ### Overview ###
 
