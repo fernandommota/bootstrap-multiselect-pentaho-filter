@@ -4,12 +4,11 @@
 
 This plugin apply the [All Member propertie of Mondrian Schema](http://mondrian.pentaho.com/documentation/schema.php#The_all_member)  with [Bootstrap Multiselect plugin](http://davidstutz.github.io/bootstrap-multiselect/) creating a better user experience.
 
-<img src="https://raw.githubusercontent.com/bovbi/bootstrap-multiselect-pentaho-filter/master/resources/plugin_example.png" alt="Example of bootstrap-multiselect-pentaho-filter" title="Plugin Pentaho Filter" align="center" height="200"/>
+<img src="https://raw.githubusercontent.com/bovbi/bootstrap-multiselect-pentaho-filter/master/resources/example_bootstrap-multiselect-pentaho-filter.gif" alt="Example of bootstrap-multiselect-pentaho-filter" title="Plugin Pentaho Filter" align="center" height="200"/>
 
 If the user select the all options available, the request value parameter will be send with the All Member propertie configured in setup script.
 
-<img src="https://raw.githubusercontent.com/bovbi/bootstrap-multiselect-pentaho-filter/master/resources/post_request_example.png" alt="Example of bootstrap-multiselect-pentaho-filter" title="Plugin Pentaho Filter" align="center" height="100"/>
-
+### Talks ###
 Watch the talk in #PentahoDay2017 of Brazil (slides and audio in portuguese).
 
 [![Plugin Bootstrap Multiselect Pentaho Filter #PentahoDay2017](https://img.youtube.com/vi/cAJBJf_gbFM/0.jpg)](http://www.youtube.com/watch?v=cAJBJf_gbFM)
