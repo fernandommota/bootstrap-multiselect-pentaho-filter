@@ -17,11 +17,13 @@ Watch the talk in #PentahoDay2017 of Brazil (audio in portuguese).
 ### Setup ###
 
 * Clone the repository of Bootstrap Multiselect plugin (https://github.com/davidstutz/bootstrap-multiselect) to use in Pentaho CDF dashboards.
+* Clone the repository of Bootstrap Multiselect Pentaho Filter plugin (ps://github.com/bovbi/bootstrap-multiselect-pentaho-filter) to use in Pentaho cTools dashboards.
 - Import the follow files to your dashboard:
 
 ```JavaScript
 <!-- Include the plugin CSS and JS: -->
 <script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
+<script type="text/javascript" src="js/bootstrap-multiselect-pentaho-filter.js"></script>
 <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css"/>
 ```
 
