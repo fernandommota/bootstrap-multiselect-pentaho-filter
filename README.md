@@ -2,7 +2,7 @@
 
 ### Overview ###
 
-This plugin apply the All Member propertie of Mondrian Schema with a better user experience.
+This plugin apply the [All Member propertie of Mondrian Schema](http://mondrian.pentaho.com/documentation/schema.php#The_all_member)  with [Bootstrap Multiselect plugin](http://davidstutz.github.io/bootstrap-multiselect/) creating a better user experience.
 
 <img src="https://raw.githubusercontent.com/bovbi/bootstrap-multiselect-pentaho-filter/master/resources/plugin_example.png" alt="Example of bootstrap-multiselect-pentaho-filter" title="Plugin Pentaho Filter" align="center" height="200"/>
 
