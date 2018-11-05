@@ -14,7 +14,17 @@ Ps. For dashboards without RequireJS support enable should be usage the previous
 
 #### Inside repository (jackrabbit persistence)
 
-- Download the repository as a zip file and import to your instance, the following example is consider the path _public/bootstrap-multiselect-pentaho-filter_.
+- Download the repository as a zip, and rename the folder:
+
+  - From
+
+  bootstrap-multiselect-pentaho-filter-master
+
+  - to
+
+  bootstrap-multiselect-pentaho-filter
+
+- Compress the folder _bootstrap-multiselect-pentaho-filter_ in a zip file the folder and import to your instance, the following example is consider the path _public/bootstrap-multiselect-pentaho-filter_.
 - Inside your CDE dashboard insert the file _js/bootstrap-multiselect-pentaho-filter.js_ path as a "Javascript External File" resource:
 
 ```JavaScript
