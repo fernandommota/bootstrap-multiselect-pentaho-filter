@@ -4,8 +4,6 @@
 
 This plugin apply the [All Member propertie of Mondrian Schema](http://mondrian.pentaho.com/documentation/schema.php#The_all_member) with [Bootstrap Multiselect plugin](http://davidstutz.github.io/bootstrap-multiselect/) creating a better user experience.
 
-[Download the follow example ](./resources/Pentaho_filter_example.zip)
-
 <img src="./resources/example_bootstrap-multiselect-pentaho-filter.gif" alt="Example of bootstrap-multiselect-pentaho-filter" title="Plugin Pentaho Filter" align="center" />
 
 If the user select the all options available, the request value parameter will be send with the All Member propertie configured in setup script.
@@ -18,17 +16,23 @@ Watch the talk in #PentahoDay2017 of Brazil (slides and audio in portuguese).
 
 ### Setup
 
-- Clone the repository of Bootstrap Multiselect plugin (https://github.com/davidstutz/bootstrap-multiselect) to use in Pentaho CDF dashboards.
-- Clone the repository of Bootstrap Multiselect Pentaho Filter plugin (ps://github.com/bovbi/bootstrap-multiselect-pentaho-filter) to use in Pentaho cTools dashboards.
+Ps. For dashboards without RequireJS support enable should be usage the previous version ([![0.3](https://github.com/fernandommota/bootstrap-multiselect-pentaho-filter/tree/0.3)](https://github.com/fernandommota/bootstrap-multiselect-pentaho-filter/tree/0.3)).
 
-* Import the follow files to your dashboard:
+### Setup
+
+#### Inside repository (jackrabbit persistence)
+
+- Download the repository as a zip file and import to your instance, the following example is consider the path _public/bootstrap-multiselect_.
+- Inside your CDE dashboard insert the file _js/bootstrap-multiselect-pentaho-filter.js_ path as a "Javascript External File" resource.
 
 ```JavaScript
-<!-- Include the plugin CSS and JS: -->
-<script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
-<script type="text/javascript" src="js/bootstrap-multiselect-pentaho-filter.js"></script>
-<link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css"/>
+${solution:bootstrap-multiselect/js/bootstrap-multiselect-pentaho-filter.js}
 ```
+
+- It's necessary maintain the property name as _bootstrapMultiselectPentahoFilter_, this will be load as a variable with the functions of plugin.
+  <img src="./resources/repository_map_example.png" alt="Example of insert bootstrap-multiselect-pentaho-filter.js" title="Example of insert bootstrap-multiselect-pentaho-filter.js" align="center" />
+
+### Usage
 
 - Add the follow function in preExecution propertie of multiselect component in a Pentaho CDF/CDA/CDE dashboard:
 
@@ -39,17 +43,19 @@ function preExecution(){
     obj.postExecution = function f(){
         postExecutionSelect.call(
             	this
-		// custom labels
-	        , '[Dimension Name].[All Member Name]'
+		// Change to all member propertie of dimension
+            , '[Dimension Name].[All Member Name]'
+        // Change the labels about dimension
 	        , 'Find dimension'
 	        , 'Select a member'
 	        , 'All members'
 	        , ' - members selected'
-		// end custom labels
+		// end labels about dimension
 	    )
     }
 
     obj.preChange = function (newChoice){
+        // Change to all member propertie of dimension
         return preChangeSelect.call(this,  '[Dimension Name].[All Member Name]', newChoice);
     };
 
@@ -62,7 +68,7 @@ function preExecution(){
 
 ### Options
 
-If the parameter of filter is empty is possible in preChange function to configure who options by default wil be selected, the options are:
+If the parameter of filter is empty is possible in preChange function to configure who options by default will be selected, the options are:
 
 - "all" - All options of multiselect will be selected.
 - "first" - The first option of multiselect will be selected.
