@@ -8,12 +8,6 @@ This plugin apply the [All Member propertie of Mondrian Schema](http://mondrian.
 
 If the user select the all options available, the request value parameter will be send with the All Member propertie configured in setup script.
 
-### Talks and Presentations
-
-Watch the talk in #PentahoDay2017 of Brazil (slides and audio in portuguese).
-
-[![Plugin Bootstrap Multiselect Pentaho Filter #PentahoDay2017](https://img.youtube.com/vi/cAJBJf_gbFM/0.jpg)](http://www.youtube.com/watch?v=cAJBJf_gbFM)
-
 ### Setup
 
 Ps. For dashboards without RequireJS support enable should be usage the previous version ([0.3](https://github.com/fernandommota/bootstrap-multiselect-pentaho-filter/tree/0.3)).
