@@ -37,7 +37,7 @@ ${solution:bootstrap-multiselect/js/bootstrap-multiselect-pentaho-filter.js}
 - In case the path of files be different of default example, update the shim configuration at _bootstrap-multiselect-pentaho-filter.js_ to new path:
   <img src="./resources/repository_shim_example.png" alt="Example of shim configuration" title="Example of shim configuration" align="center" />
 
-#### Static files approach with AppBuilder/Sparkl (filesystem persistence)
+#### Static files approach with AppBuilder/Sparkl (filesystem)
 
 Very similar with approach above, in this case it's necessary change the paths.
 
