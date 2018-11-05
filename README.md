@@ -15,14 +15,17 @@ Ps. For dashboards without RequireJS support enable should be usage the previous
 #### Inside repository (jackrabbit persistence)
 
 - Download the repository as a zip file and import to your instance, the following example is consider the path _public/bootstrap-multiselect_.
-- Inside your CDE dashboard insert the file _js/bootstrap-multiselect-pentaho-filter.js_ path as a "Javascript External File" resource.
+- Inside your CDE dashboard insert the file _js/bootstrap-multiselect-pentaho-filter.js_ path as a "Javascript External File" resource:
 
 ```JavaScript
 ${solution:bootstrap-multiselect/js/bootstrap-multiselect-pentaho-filter.js}
 ```
 
-- It's necessary maintain the property name as _bootstrapMultiselectPentahoFilter_, this will be load as a variable with the functions of plugin.
+- It's necessary maintain the property name as _bootstrapMultiselectPentahoFilter_, this will be load as a variable with the functions of plugin:
   <img src="./resources/repository_map_example.png" alt="Example of insert bootstrap-multiselect-pentaho-filter.js" title="Example of insert bootstrap-multiselect-pentaho-filter.js" align="center" />
+
+- In case the path of files be different of default example, update the shim configuration at _bootstrap-multiselect-pentaho-filter.js_ to new path:
+  <img src="./resources/repository_shim_example.png" alt="Example of shim configuration" title="Example of shim configuration" align="center" />
 
 ### Usage
 
