@@ -18,8 +18,6 @@ Watch the talk in #PentahoDay2017 of Brazil (slides and audio in portuguese).
 
 Ps. For dashboards without RequireJS support enable should be usage the previous version ([0.3](https://github.com/fernandommota/bootstrap-multiselect-pentaho-filter/tree/0.3)).
 
-### Setup
-
 #### Inside repository (jackrabbit persistence)
 
 - Download the repository as a zip file and import to your instance, the following example is consider the path _public/bootstrap-multiselect_.
