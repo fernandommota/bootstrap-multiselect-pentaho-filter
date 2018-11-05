@@ -37,6 +37,23 @@ ${solution:bootstrap-multiselect/js/bootstrap-multiselect-pentaho-filter.js}
 - In case the path of files be different of default example, update the shim configuration at _bootstrap-multiselect-pentaho-filter.js_ to new path:
   <img src="./resources/repository_shim_example.png" alt="Example of shim configuration" title="Example of shim configuration" align="center" />
 
+#### Static files approach with AppBuilder/Sparkl (filesystem persistence)
+
+Very similar with approach above, in this case it's necessary change the paths.
+
+- Consider a plugin made with AppBuilder named as _dashboard_ and the folder _bootstrap-multiselect-pentaho-filter_ at path _pentaho-solutions/system/dashboard/static/custom/js/libs/bootstrap-multiselect-pentaho-filter_
+- Inside your CDE dashboard insert the file _js/bootstrap-multiselect-pentaho-filter.js_ path as a "Javascript External File" resource:
+
+```JavaScript
+../../../../api/repos/dashboard/static/custom/js/libs/bootstrap-multiselect-pentaho-filter/js/bootstrap-multiselect-pentaho-filter.js
+```
+
+- It's necessary maintain the property name as _bootstrapMultiselectPentahoFilter_, this will be load as a variable with the functions of plugin:
+  <img src="./resources/repository_map_sparkl_example.png" alt="Example of insert bootstrap-multiselect-pentaho-filter.js" title="Example of insert bootstrap-multiselect-pentaho-filter.js" align="center" />
+
+- Update the path files of shim configuration at _bootstrap-multiselect-pentaho-filter.js_:
+  <img src="./resources/repository_shim_sparkl_example.png" alt="Example of shim configuration" title="Example of shim configuration" align="center" />
+
 ### Usage
 
 - Add the follow function in preExecution propertie of multiselect component in a Pentaho CDF/CDA/CDE dashboard:
