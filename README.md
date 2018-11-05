@@ -10,7 +10,10 @@ If the user select the all options available, the request value parameter will b
 
 ### Setup
 
-Ps. For dashboards without RequireJS support enable should be usage the previous version ([0.3](https://github.com/fernandommota/bootstrap-multiselect-pentaho-filter/tree/0.3)).
+#### Compatibility
+
+- Versions with support to RequireJS starts from 0.4;
+- Versions without support to RequireJS ended to [0.3](https://github.com/fernandommota/bootstrap-multiselect-pentaho-filter/tree/0.3).
 
 #### Inside repository (jackrabbit persistence)
 
