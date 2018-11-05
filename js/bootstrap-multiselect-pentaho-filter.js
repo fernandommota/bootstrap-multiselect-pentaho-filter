@@ -30,7 +30,10 @@ require.config({
   } // end Shim Configuration
 });
 
-define(["bootstrap-multiselect"], function(bootstrapMultiselect) {
+define(["cdf/lib/jquery", "bootstrap-multiselect"], function(
+  $,
+  bootstrapMultiselect
+) {
   const postExecutionSelect = function postExecutionSelect(
     optionAllValue,
     filterPlaceholder,
