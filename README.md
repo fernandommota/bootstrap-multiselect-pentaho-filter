@@ -14,7 +14,7 @@ Ps. For dashboards without RequireJS support enable should be usage the previous
 
 #### Inside repository (jackrabbit persistence)
 
-- Download the repository as a zip file and import to your instance, the following example is consider the path _public/bootstrap-multiselect_.
+- Download the repository as a zip file and import to your instance, the following example is consider the path _public/bootstrap-multiselect-pentaho-filter_.
 - Inside your CDE dashboard insert the file _js/bootstrap-multiselect-pentaho-filter.js_ path as a "Javascript External File" resource:
 
 ```JavaScript
@@ -31,12 +31,14 @@ ${solution:bootstrap-multiselect/js/bootstrap-multiselect-pentaho-filter.js}
 
 - Add the follow function in preExecution propertie of multiselect component in a Pentaho CDF/CDA/CDE dashboard:
 
+Ps. The variable _bootstrapMultiselectPentahoFilter_ now is used to call the internal functions of plugin.
+
 ```JavaScript
 function preExecution(){
     var obj = this;
 
     obj.postExecution = function f(){
-        postExecutionSelect.call(
+        bootstrapMultiselectPentahoFilter.postExecutionSelect.call(
             this
             // Change to all member propertie of dimension
             , '[Dimension Name].[All Member Name]'
@@ -51,12 +53,12 @@ function preExecution(){
 
     obj.preChange = function (newChoice){
         // Change to all member propertie of dimension
-        return preChangeSelect.call(this,  '[Dimension Name].[All Member Name]', newChoice);
+        return bootstrapMultiselectPentahoFilter.preChangeSelect.call(this,  '[Dimension Name].[All Member Name]', newChoice);
     };
 
     obj.postFetch = function postFetch(result){
     	// configure the option for set the default value of parameter
-        postFetchSelect.call(this, result, 'all');
+        bootstrapMultiselectPentahoFilter.postFetchSelect.call(this, result, 'all');
     };
 }
 ```
