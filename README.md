@@ -16,7 +16,7 @@ Watch the talk in #PentahoDay2017 of Brazil (slides and audio in portuguese).
 
 ### Setup
 
-Ps. For dashboards without RequireJS support enable should be usage the previous version ([![0.3](https://github.com/fernandommota/bootstrap-multiselect-pentaho-filter/tree/0.3)](https://github.com/fernandommota/bootstrap-multiselect-pentaho-filter/tree/0.3)).
+Ps. For dashboards without RequireJS support enable should be usage the previous version ([0.3](https://github.com/fernandommota/bootstrap-multiselect-pentaho-filter/tree/0.3)).
 
 ### Setup
 
