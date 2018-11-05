@@ -6,7 +6,7 @@
 require.config({
   paths: {
     "bootstrap-multiselect":
-      "/pentaho/api/repos/:public:bootstrap-multiselect:js:bootstrap-multiselect.js/content?noext"
+      "/pentaho/api/repos/:public:bootstrap-multiselect-pentaho-filter:js:bootstrap-multiselect.js/content?noext"
   },
   // start Shim Configuration
   shim: {
@@ -17,7 +17,7 @@ require.config({
       deps: [
         "cdf/lib/jquery",
         "cdf/Dashboard.Bootstrap",
-        "css!/pentaho/api/repos/:public:bootstrap-multiselect:css:bootstrap-multiselect.css/content?noext"
+        "css!/pentaho/api/repos/:public:bootstrap-multiselect-pentaho-filter:css:bootstrap-multiselect.css/content?noext"
       ],
       exports: "ko"
     }
