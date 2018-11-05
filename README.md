@@ -34,15 +34,15 @@ function preExecution(){
 
     obj.postExecution = function f(){
         postExecutionSelect.call(
-            	this
-		// Change to all member propertie of dimension
+            this
+            // Change to all member propertie of dimension
             , '[Dimension Name].[All Member Name]'
-        // Change the labels about dimension
-	        , 'Find dimension'
-	        , 'Select a member'
-	        , 'All members'
-	        , ' - members selected'
-		// end labels about dimension
+            // Change the labels about dimension
+            , 'Find dimension'
+            , 'Select a member'
+            , 'All members'
+            , ' - members selected'
+            // end labels about dimension
 	    )
     }
 
