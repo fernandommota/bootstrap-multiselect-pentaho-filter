@@ -4,38 +4,47 @@
  **/
 
 require.config({
+  waitSeconds: 100,
   paths: {
-    "bootstrap-multiselect":
-      "/pentaho/api/repos/:public:bootstrap-multiselect-pentaho-filter:js:bootstrap-multiselect.js/content?noext"
+    "bootstrap-multiselect-knockout":
+      "/pentaho/api/repos/:public:bootstrap-multiselect-pentaho-filter:js:knockout.js/content?noext",
     /* Path example for AppBuilder/Sparkl plugins approach
-    "/pentaho/api/repos/dashboard/static/custom/js/libs/bootstrap-multiselect-pentaho-filter/js/bootstrap-multiselect.js?noext"
-    */
+      "/pentaho/api/repos/dashboard/static/custom/js/libs/bootstrap-multiselect-pentaho-filter/js/knockout.js?noext",
+      */
+    "bootstrap-multiselect":
+      "/pentaho/api/repos/:public:bootstrap-multiselect-pentaho-filter:js:bootstrap-multiselect.js/content?noext",
+    /* Path example for AppBuilder/Sparkl plugins approach
+      "/pentaho/api/repos/dashboard/static/custom/js/libs/bootstrap-multiselect-pentaho-filter/js/bootstrap-multiselect.js?noext",
+      */
+    "bootstrap-multiselect-css":
+      "/pentaho/api/repos/:public:bootstrap-multiselect-pentaho-filter:css:bootstrap-multiselect.css/content?noext"
+    /* Path example for AppBuilder/Sparkl plugins approach
+      "/pentaho/api/repos/dashboard/static/custom/js/libs/bootstrap-multiselect-pentaho-filter/css/bootstrap-multiselect.css?noext"
+      */
   },
   // start Shim Configuration
   shim: {
     "cdf/lib/jquery": {
       exports: "$"
     },
+    "bootstrap-multiselect-knockout": {
+      exports: "ko"
+    },
     "cdf/Dashboard.Bootstrap": {
-      deps: [
-        "cdf/lib/jquery",
-        "css!/pentaho/api/repos/:public:bootstrap-multiselect-pentaho-filter:css:bootstrap-multiselect.css/content?noext"
-        /* Path example for AppBuilder/Sparkl plugins approach
-        "css!/pentaho/api/repos/dashboard/static/custom/js/libs/bootstrap-multiselect-pentaho-filter/css/bootstrap-multiselect.css?noext"
-        */
-      ]
+      deps: ["cdf/lib/jquery"]
     },
     "bootstrap-multiselect": {
-      deps: ["cdf/lib/jquery", "cdf/Dashboard.Bootstrap"],
-      exports: "ko"
+      deps: [
+        "css!bootstrap-multiselect-css",
+        "cdf/Dashboard.Bootstrap",
+        "cdf/lib/jquery",
+        "bootstrap-multiselect-knockout"
+      ]
     }
   } // end Shim Configuration
 });
 
-define(["cdf/lib/jquery", "bootstrap-multiselect"], function(
-  $,
-  bootstrapMultiselect
-) {
+define(["cdf/lib/jquery", "bootstrap-multiselect"], function($) {
   const postExecutionSelect = function postExecutionSelect(
     optionAllValue,
     filterPlaceholder,
