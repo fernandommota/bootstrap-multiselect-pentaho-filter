@@ -27,6 +27,9 @@ require.config({
     "cdf/lib/jquery": {
       exports: "$"
     },
+    "cdf/Dashboard.Bootstrap": {
+      deps: ["cdf/lib/jquery"]
+    },
     "bootstrap-multiselect-knockout": {
       exports: "ko",
       deps: [
@@ -34,9 +37,6 @@ require.config({
         "cdf/Dashboard.Bootstrap",
         "cdf/lib/jquery"
       ]
-    },
-    "cdf/Dashboard.Bootstrap": {
-      deps: ["cdf/lib/jquery"]
     },
     "bootstrap-multiselect": {
       deps: [
