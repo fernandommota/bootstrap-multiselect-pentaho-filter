@@ -28,23 +28,25 @@ require.config({
       exports: "$"
     },
     "bootstrap-multiselect-knockout": {
-      exports: "ko"
+      exports: "ko",
+      deps: [
+        "css!bootstrap-multiselect-css",
+        "cdf/Dashboard.Bootstrap",
+        "cdf/lib/jquery"
+      ]
     },
     "cdf/Dashboard.Bootstrap": {
       deps: ["cdf/lib/jquery"]
     },
     "bootstrap-multiselect": {
       deps: [
-        "css!bootstrap-multiselect-css",
-        "cdf/Dashboard.Bootstrap",
-        "cdf/lib/jquery",
         "bootstrap-multiselect-knockout"
       ]
     }
   } // end Shim Configuration
 });
 
-define(["cdf/lib/jquery", "bootstrap-multiselect"], function($) {
+define(["cdf/lib/jquery", "bootstrap-multiselect"], function ($) {
   const postExecutionSelect = function postExecutionSelect(
     optionAllValue,
     filterPlaceholder,
@@ -135,7 +137,7 @@ define(["cdf/lib/jquery", "bootstrap-multiselect"], function($) {
         } else options.push(resultset[resultset.length - 1][0]);
       } else {
         // all option or none selected
-        $.each(result.resultset, function(index, value) {
+        $.each(result.resultset, function (index, value) {
           options.push(value[0]);
         });
       }
