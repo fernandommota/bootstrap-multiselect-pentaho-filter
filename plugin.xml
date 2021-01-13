@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin name="bootstrap-multiselect-pentaho-filter" title="Bootstrap Multiselect Pentaho Filter">
+
+  <content-types>
+    <static-paths>
+      <static-path url="/bootstrap-multiselect-pentaho-filter/src" localFolder="src"/>
+    </static-paths>
+  </content-types>
+
+  <external-resources>
+    <file context="requirejs">content/bootstrap-multiselect-pentaho-filter/src/js/bootstrap-multiselect-pentaho-filter-require-js-cfg.js</file>
+  </external-resources>
+</plugin>
