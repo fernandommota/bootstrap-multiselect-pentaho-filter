@@ -1,0 +1,152 @@
+<DesignerComponent>
+  <Header>
+    <Name>Bootstrap Multiselect Pentaho Filter Component</Name>
+    <IName>BootstrapMultiselectPentahoFilterComponent</IName>
+    <Description>Bootstrap Multiselect Pentaho Filter Component</Description>
+    <Category>SELECTORS</Category>
+    <CatDescription>Selects</CatDescription>
+    <Order>241</Order>
+    <Type>PalleteEntry</Type>
+  </Header>
+  <Contents>
+    <Model>
+      <Property>parameter</Property>
+      <Property>htmlObject</Property>
+      <Property>filterPlaceholderText</Property>
+      <Property>nonSelectedText</Property>
+      <Property>allSelectedText</Property>
+      <Property>nSelectedText</Property>
+      <Property>allMemberName</Property>
+      <Property>useDefaultValue</Property>
+      <Property>firstOrLastDefaultValues</Property>
+      <Property>listeners</Property>
+      <Property name="parameters">xActionArrayParameter</Property>
+      <Definition name="queryDefinition">
+        <Property>dataSource</Property>
+      </Definition>
+      <Property>postFetch</Property>
+      <Property>valuesArray</Property>
+      <Property>useFirstValue</Property>
+      <Property>valueAsId</Property>
+      <Property>size</Property>
+      <Property>externalPlugin</Property>
+      <Property>executeAtStart</Property>
+      <Property>preExecution</Property>
+      <Property>postExecution</Property>
+      <Property>preChange</Property>
+      <Property>postChange</Property>
+      <Property>refreshPeriod</Property>
+      <Property>tooltip</Property>
+    </Model>
+    <Implementation supportsLegacy="true" supportsAMD="true">
+      <Code src="legacy/bootstrap-multiselect-pentaho-filter.js" />
+      <Dependencies>
+        <!-- last stable version for booststrap 3 https://github.com/davidstutz/bootstrap-multiselect/releases/tag/v0.9.15 -->
+        <Dependency src="legacy/bootstrap-multiselect.js" version="0.9.15">BootstrapMultiselect</Dependency>
+      </Dependencies>
+      <CustomProperties>
+        <DesignerProperty>
+          <Header>
+            <Name>filterPlaceholderText</Name>
+            <Parent>BaseProperty</Parent>
+            <DefaultValue>Find Dimension</DefaultValue>
+            <Description>filterPlaceholderText</Description>
+            <Tooltip>Set the text for search</Tooltip>
+            <InputType>String</InputType>
+            <OutputType>String</OutputType>
+            <Order>100</Order>
+            <Version>1.0</Version>
+          </Header>
+        </DesignerProperty>
+        <DesignerProperty>
+          <Header>
+            <Name>nonSelectedText</Name>
+            <Parent>BaseProperty</Parent>
+            <DefaultValue>Select a Member</DefaultValue>
+            <Description>nonSelectedText</Description>
+            <Tooltip>Set the text when none option is selected</Tooltip>
+            <InputType>String</InputType>
+            <OutputType>String</OutputType>
+            <Order>100</Order>
+            <Version>1.0</Version>
+          </Header>
+        </DesignerProperty>
+        <DesignerProperty>
+          <Header>
+            <Name>allSelectedText</Name>
+            <Parent>BaseProperty</Parent>
+            <DefaultValue>All members</DefaultValue>
+            <Description>allSelectedText</Description>
+            <Tooltip>Set the text when all options is selected</Tooltip>
+            <InputType>String</InputType>
+            <OutputType>String</OutputType>
+            <Order>100</Order>
+            <Version>1.0</Version>
+          </Header>
+        </DesignerProperty>
+        <DesignerProperty>
+          <Header>
+            <Name>nSelectedText</Name>
+            <Parent>BaseProperty</Parent>
+            <DefaultValue> - members selected</DefaultValue>
+            <Description>nSelectedText</Description>
+            <Tooltip>Set the text when n options is selected</Tooltip>
+            <InputType>String</InputType>
+            <OutputType>String</OutputType>
+            <Order>100</Order>
+            <Version>1.0</Version>
+          </Header>
+        </DesignerProperty>
+        <DesignerProperty>
+          <Header>
+            <Name>allMemberName</Name>
+            <Parent>BaseProperty</Parent>
+            <DefaultValue>[Dimension].[allMemberName]</DefaultValue>
+            <Description>allMemberName</Description>
+            <Tooltip>Set the "allMemberName" property value from Mondrian schema</Tooltip>
+            <InputType>String</InputType>
+            <OutputType>String</OutputType>
+            <Order>100</Order>
+            <Version>1.0</Version>
+          </Header>
+        </DesignerProperty>
+        <DesignerProperty>
+          <Header>
+            <Name>useDefaultValue</Name>
+            <Parent>BaseProperty</Parent>
+            <DefaultValue>all</DefaultValue>
+            <Description>useDefaultValue</Description>
+            <Tooltip>Select the default selected options</Tooltip>
+            <InputType type="valuelist"/>
+            <OutputType>String</OutputType>
+            <Order>101</Order>
+            <Version>1.0</Version>
+          </Header>
+          <Values>
+            <Value display="Use firstOrLastDefaultValues"></Value>
+            <Value display="All options">all</Value>
+            <Value display="First option">first</Value>
+            <Value display="Last option">last</Value>
+          </Values>
+        </DesignerProperty>
+        <DesignerProperty>
+          <Header>
+            <Name>firstOrLastDefaultValues</Name>
+            <Parent>BaseProperty</Parent>
+            <DefaultValue></DefaultValue>
+            <Description>firstOrLastDefaultValues</Description>
+            <Tooltip>Set a positive number to select the first options or a negative number to select the last options by default</Tooltip>
+            <InputType>Integer</InputType>
+            <OutputType>Number</OutputType>
+            <Order>102</Order>
+            <Advanced>false</Advanced>
+            <Version>1.0</Version>
+          </Header>
+        </DesignerProperty>
+      </CustomProperties>
+      <Styles>
+        <Style src="legacy/bootstrap-multiselect.css">BootstrapMultipleSelect</Style>
+      </Styles>
+    </Implementation>
+  </Contents>
+</DesignerComponent>

@@ -3,11 +3,13 @@
 
   <content-types>
     <static-paths>
-      <static-path url="/bootstrap-multiselect-pentaho-filter/src" localFolder="src"/>
+      <static-path url="/bootstrap-multiselect-pentaho-filter/components" localFolder="components" />
+      <static-path url="/bootstrap-multiselect-pentaho-filter/amd-components" localFolder="amd-components" />
     </static-paths>
   </content-types>
 
-  <external-resources>
-    <file context="requirejs">content/bootstrap-multiselect-pentaho-filter/src/js/bootstrap-multiselect-pentaho-filter-require-js-cfg.js</file>
-  </external-resources>
+  	<external-resources>
+        <file context="requirejs">content/bootstrap-multiselect-pentaho-filter/amd-components/bootstrap-multiselect-pentaho-filter-require-js-cfg.js</file>
+    </external-resources>
+
 </plugin>
