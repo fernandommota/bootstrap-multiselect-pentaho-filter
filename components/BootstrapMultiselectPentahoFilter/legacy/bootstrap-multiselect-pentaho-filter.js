@@ -1,20 +1,35 @@
-const postExecutionSelect = function postExecutionSelect(
-    optionAllValue,
-    filterPlaceholder,
-    nonSelectedText,
-    allSelectedText,
-    nSelectedText
+const initSelect = function(jQuery, logger) {
+    $ = jQuery;
+    Logger = logger;
+}
+
+const isValidPropertyValue = function isValidPropertyValue(
+    property,
+    cause
 ) {
+
+    if (typeof property === 'undefined') {
+        msg = ''; //TO-DO
+        this.trigger("cdf cdf:error", this, msg, cause || null);
+        Logger.log(this.name + ': ' + cause, "error");
+        return false;
+    }
+
+    return true;
+};
+
+const postExecutionSelect = function postExecutionSelect() {
+
     $("#" + this.htmlObject + " select").multiselect({
         includeSelectAllOption: true,
-        selectAllValue: optionAllValue,
+        selectAllValue: this.allMemberName,
         enableFiltering: true,
-        filterPlaceholder: filterPlaceholder ? filterPlaceholder : "Buscar",
+        filterPlaceholder: this.filterPlaceholderText,
         enableCaseInsensitiveFiltering: true,
-        nonSelectedText: nonSelectedText ? nonSelectedText : "Selecione",
-        allSelectedText: allSelectedText ? allSelectedText : "Todos",
-        selectAllText: allSelectedText ? allSelectedText : "Todos",
-        nSelectedText: nSelectedText ? nSelectedText : " - selecionados",
+        nonSelectedText: this.nonSelectedText,
+        allSelectedText: this.allSelectedText,
+        selectAllText: this.allSelectedText,
+        nSelectedText: this.nSelectedText,
         numberDisplayed: 1,
         buttonWidth: "100%"
     });
@@ -25,9 +40,9 @@ const postExecutionSelect = function postExecutionSelect(
     if (_parameter.length <= 0 || _parameter.length === nOptions.length) {
         $("#" + this.htmlObject + " button").removeClass("bootstrap-multiselect-pentaho-filter-changed-alert");
         $("#" + this.htmlObject + " select").multiselect("selectAll", false);
-        this.dashboard.setParameter(this.parameter, optionAllValue);
+        this.dashboard.setParameter(this.parameter, this.allMemberName);
     } else {
-        if (optionAllValue)
+        if (this.allMemberName)
             $("#" + this.htmlObject + " button").addClass("bootstrap-multiselect-pentaho-filter-changed-alert");
         else
             $("#" + this.htmlObject + " button").removeClass("bootstrap-multiselect-pentaho-filter-changed-alert");
@@ -39,19 +54,15 @@ const postExecutionSelect = function postExecutionSelect(
     $("#" + this.htmlObject + " select").multiselect("refresh");
 };
 
-const preChangeSelect = function preChangeSelect(optionAllValue, newChoice) {
+const preChangeSelect = function preChangeSelect(newChoice) {
     //get the length options of select
     var nOptions = $("#" + this.htmlObject + " option");
-    console.log('nOptions', nOptions);
-    console.log('nOptions.length', nOptions.length);
-    console.log('newChoice', newChoice);
-    console.log('newChoice.length', newChoice.length);
     //test if exist unless on eoption
     if (nOptions.length > 0) {
         //test if the number of options selected is equal to number of options available
         if (nOptions.length === newChoice.length) {
             $("#" + this.htmlObject + " button").removeClass("bootstrap-multiselect-pentaho-filter-changed-alert");
-            return optionAllValue;
+            return this.allMemberName;
         } else {
             $("#" + this.htmlObject + " button").addClass("bootstrap-multiselect-pentaho-filter-changed-alert");
             return newChoice;
@@ -59,7 +70,7 @@ const preChangeSelect = function preChangeSelect(optionAllValue, newChoice) {
     };
 };
 
-const postFetchSelect = function postFetchSelect(result, defaultValueOption) {
+const postFetchSelect = function postFetchSelect(result) {
     //defaultValueOption options
     // all - will select all options in resultset
     // first - will select the first option in resultset
@@ -67,14 +78,23 @@ const postFetchSelect = function postFetchSelect(result, defaultValueOption) {
     // last - will select the last option in resultset
     // last-n - will select the n last options in resultset
 
-    defaultValueOptionLength =
-        defaultValueOption.split("-").length > 1 ?
-        defaultValueOption.split("-")[1] :
-        0;
-    defaultValueOption =
-        defaultValueOptionLength > 0 ?
-        defaultValueOption.split("-")[0].toString() :
-        defaultValueOption;
+    defaultValueOption = this.useDefaultValue;
+    if (typeof defaultValueOption === 'undefined') {
+
+        if (typeof this.firstOrLastDefaultValues === 'undefined') {
+            msg = this.name;
+            cause = 'firstOrLastDefaultValues property must be a valid number!';
+            this.trigger("cdf cdf:error", this, msg, cause || null);
+            Logger.log(msg + ': ' + cause, "error");
+            return;
+        } else if (this.firstOrLastDefaultValues >= 0) {
+            defaultValueOption = 'first';
+            defaultValueOptionLength = this.firstOrLastDefaultValues;
+        } else {
+            defaultValueOption = 'last';
+            defaultValueOptionLength = (this.firstOrLastDefaultValues * -1);
+        }
+    }
 
     //get the parameter mapped in component
     _parameter = this.dashboard.getParameterValue(this.parameter);
@@ -109,38 +129,121 @@ const postFetchSelect = function postFetchSelect(result, defaultValueOption) {
 };
 
 
-var BootstrapMultiselectPentahoFilterComponent = SelectMultiComponent.extend({
-    postExecution: function() {
-        console.log('postExec');
-        optionAllValue = '[Consolidated Date Year Filter].[Todos]';
-        filterPlaceholder = 'Buscar Ano';
-        nonSelectedText = 'Selecione um Ano';
-        allSelectedText = 'Todos os Anos';
-        nSelectedText = ' - anos selecionados';
+if (typeof require === "function" && typeof require.specified === "function") {
+    //console.log('requirejs enabled!');
+    define('BootstrapMultiselectPentahoFilter', function() {
+        return {
+            initSelect: initSelect,
+            isValidPropertyValue: isValidPropertyValue,
+            postExecutionSelect: postExecutionSelect,
+            preChangeSelect: preChangeSelect,
+            postFetchSelect: postFetchSelect
+        };
+    });
 
-        postExecutionSelect.call(
-            this
-            // Change to all member propertie of dimension
-            , optionAllValue
-            // Change the labels about dimension
-            , filterPlaceholder, nonSelectedText, allSelectedText, nSelectedText
-            // end labels about dimension
-        )
-    },
-    preChange: function(newChoice) {
-        console.log('preChange newChoice', newChoice);
-        optionAllValue = '[Consolidated Date Year Filter].[Todos]';
-        return preChangeSelect.call(this, optionAllValue, newChoice);
-    },
-    postFetch: function(data) {
-        defaultValueOption = 'all';
-        //defaultValueOption options
-        // all - will select all options in resultset
-        // first - will select the first option in resultset
-        // first-n - will select the n firsts options in resultset
-        // last - will select the last option in resultset
-        // last-n - will select the n last options in resultset
-        console.log('postFetch');
-        postFetchSelect.call(this, data, defaultValueOption);
-    },
-});
+} else {
+    //console.log('requirejs disabled!');
+    initSelect($, Dashboards);
+    BootstrapMultiselectPentahoFilterComponent = SelectMultiComponent.extend({
+        /**
+         * 
+         * TO-DO extend the original preExec function from pentaho-cdf/js-legacy/components/core.js
+         */
+        preExec: function(isDataPush) {
+
+            if (isDataPush) {
+                this.isDataPush = true;
+            }
+
+            /*
+             * runCounter gets incremented every time we run a query, allowing us to
+             * determine whether the query has been called again after us.
+             */
+            if (typeof this.runCounter == "undefined") {
+                this.runCounter = 0;
+            }
+            var ret;
+            if (typeof this.preExecution == "function") {
+                try {
+                    ret = this.preExecution();
+                    ret = typeof ret == "undefined" || ret;
+                } catch (e) {
+                    this.error(Dashboards.getErrorObj('COMPONENT_ERROR').msg, e);
+                    this.dashboard.log(e, "error");
+                    ret = false;
+                }
+            } else {
+                ret = true;
+            }
+            this.trigger('cdf cdf:preExecution', this, ret);
+
+            if (!ret) {
+                this.isDataPush = false;
+            }
+
+            // update postFetch function add the postFetchSelect function
+            var userPostFetch = this.postFetch;
+            this.postFetch = function(data) {
+                if (typeof this.postFetch == "function") {
+                    var newData = userPostFetch(data);
+                    data = (newData === undefined) ? data : newData;
+
+                    //call the plugin
+                    postFetchSelect.call(this, data);
+
+                    this.trigger('cdf cdf:postFetch', this, data);
+                } else {
+                    postFetchSelect.call(this, data);
+                }
+
+                return data;
+            };
+
+            return ret;
+        },
+        /**
+         * 
+         * TO-DO extend the original postExec function from pentaho-cdf/js-legacy/components/core.js
+         */
+        postExec: function() {
+            //validate property values
+            validateProperties = [];
+            validateProperties.push(isValidPropertyValue.call(this, this.allMemberName, 'allMemberName property must be a valid text!'));
+            validateProperties.push(isValidPropertyValue.call(this, this.filterPlaceholderText, 'filterPlaceholderText property must be a valid text!'));
+            validateProperties.push(isValidPropertyValue.call(this, this.nonSelectedText, 'nonSelectedText property must be a valid text!'));
+            validateProperties.push(isValidPropertyValue.call(this, this.allSelectedText, 'allSelectedText property must be a valid text!'));
+            validateProperties.push(isValidPropertyValue.call(this, this.nSelectedText, 'nSelectedText property must be a valid text!'));
+
+
+            if (validateProperties.filter(function(isValid) { return isValid === false; }).length > 0)
+                return;
+
+            postExecutionSelect.call(this);
+
+            this.trigger('cdf cdf:preChange', this.preChangeTeste);
+
+            if (typeof this.postExecution == "function") {
+                this.postExecution();
+            }
+            this.trigger('cdf cdf:postExecution', this);
+            this.isDataPush = false;
+
+            // update preChange function add the preChangeSelect function
+            if (typeof this.preChange == "function") {
+                var userPreChange = this.preChange;
+                this.preChange = function(newChoice) {
+                    userNewChoice = userPreChange(newChoice);
+                    if (typeof userNewChoice === 'undefined')
+                        return preChangeSelect.call(this, newChoice);
+                    else
+                        return preChangeSelect.call(this, userNewChoice);
+                }
+            } else {
+                this.preChange = function(newChoice) {
+                    return preChangeSelect.call(this, newChoice);
+                }
+            }
+
+        },
+    });
+}

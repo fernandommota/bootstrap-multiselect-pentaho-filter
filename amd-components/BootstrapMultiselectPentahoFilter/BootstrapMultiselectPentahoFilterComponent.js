@@ -15,7 +15,8 @@ define([
     'cdf/lib/jquery',
     'cdf/components/SelectMultiComponent',
     'cdf/Logger',
-    'css!./BootstrapMultiselectPentahoFilter/bootstrap-multiselect',
+    './components/BootstrapMultiselectPentahoFilter/legacy/bootstrap-multiselect-pentaho-filter',
+    'css!./amd-components/BootstrapMultiselectPentahoFilter/bootstrap-multiselect',
 ], function($, SelectMultiComponent, Logger) {
 
     /**
@@ -1706,131 +1707,7 @@ define([
      * END TO-DO: fix the manual inject bootstrap-multiselect.js in the main component file.
      */
 
-    const isValidPropertyValue = function isValidPropertyValue(
-        property,
-        cause
-    ) {
-
-        if (typeof property === 'undefined') {
-            msg = ''; //TO-DO
-            this.trigger("cdf cdf:error", this, msg, cause || null);
-            Logger.log(this.name + ': ' + cause, "error");
-            return false;
-        }
-
-        return true;
-    };
-
-    const postExecutionSelect = function postExecutionSelect() {
-
-        $("#" + this.htmlObject + " select").multiselect({
-            includeSelectAllOption: true,
-            selectAllValue: this.allMemberName,
-            enableFiltering: true,
-            filterPlaceholder: this.filterPlaceholderText,
-            enableCaseInsensitiveFiltering: true,
-            nonSelectedText: this.nonSelectedText,
-            allSelectedText: this.allSelectedText,
-            selectAllText: this.allSelectedText,
-            nSelectedText: this.nSelectedText,
-            numberDisplayed: 1,
-            buttonWidth: "100%"
-        });
-
-        _parameter = this.dashboard.getParameterValue(this.parameter);
-        var nOptions = $("#" + this.htmlObject + " option");
-
-        if (_parameter.length <= 0 || _parameter.length === nOptions.length) {
-            $("#" + this.htmlObject + " button").removeClass("bootstrap-multiselect-pentaho-filter-changed-alert");
-            $("#" + this.htmlObject + " select").multiselect("selectAll", false);
-            this.dashboard.setParameter(this.parameter, this.allMemberName);
-        } else {
-            if (this.allMemberName)
-                $("#" + this.htmlObject + " button").addClass("bootstrap-multiselect-pentaho-filter-changed-alert");
-            else
-                $("#" + this.htmlObject + " button").removeClass("bootstrap-multiselect-pentaho-filter-changed-alert");
-            $("#" + this.htmlObject + " select").multiselect("selectAll", true);
-            this.dashboard.setParameter(this.parameter, _parameter);
-        }
-
-        //update select
-        $("#" + this.htmlObject + " select").multiselect("refresh");
-    };
-
-    const preChangeSelect = function preChangeSelect(newChoice) {
-        //get the length options of select
-        var nOptions = $("#" + this.htmlObject + " option");
-        //test if exist unless on eoption
-        if (nOptions.length > 0) {
-            //test if the number of options selected is equal to number of options available
-            if (nOptions.length === newChoice.length) {
-                $("#" + this.htmlObject + " button").removeClass("bootstrap-multiselect-pentaho-filter-changed-alert");
-                return this.allMemberName;
-            } else {
-                $("#" + this.htmlObject + " button").addClass("bootstrap-multiselect-pentaho-filter-changed-alert");
-                return newChoice;
-            }
-        };
-    };
-
-    const postFetchSelect = function postFetchSelect(result) {
-        //defaultValueOption options
-        // all - will select all options in resultset
-        // first - will select the first option in resultset
-        // first-n - will select the n firsts options in resultset
-        // last - will select the last option in resultset
-        // last-n - will select the n last options in resultset
-
-        defaultValueOption = this.useDefaultValue;
-        if (typeof defaultValueOption === 'undefined') {
-
-            if (typeof this.firstOrLastDefaultValues === 'undefined') {
-                msg = this.name;
-                cause = 'firstOrLastDefaultValues property must be a valid number!';
-                this.trigger("cdf cdf:error", this, msg, cause || null);
-                Logger.log(msg + ': ' + cause, "error");
-                return;
-            } else if (this.firstOrLastDefaultValues >= 0) {
-                defaultValueOption = 'first';
-                defaultValueOptionLength = this.firstOrLastDefaultValues;
-            } else {
-                defaultValueOption = 'last';
-                defaultValueOptionLength = (this.firstOrLastDefaultValues * -1);
-            }
-        }
-
-        //get the parameter mapped in component
-        _parameter = this.dashboard.getParameterValue(this.parameter);
-        if (_parameter.length <= 0) {
-            var options = [];
-            var resultset = result.resultset;
-            if (defaultValueOption === "first") {
-                if (defaultValueOptionLength > 0) {
-                    for (
-                        var i = 0; i < defaultValueOptionLength && i < resultset.length; i++
-                    )
-                        options.push(resultset[i][0]);
-                } else options.push(resultset[0][0]);
-            } else if (defaultValueOption === "last") {
-                if (defaultValueOptionLength > 0) {
-                    for (
-                        var i = resultset.length - 1; i > resultset.length - 1 - defaultValueOptionLength && i >= 0; i--
-                    )
-                        options.push(resultset[i][0]);
-                } else options.push(resultset[resultset.length - 1][0]);
-            } else {
-                // all option or none selected
-                $.each(result.resultset, function(index, value) {
-                    options.push(value[0]);
-                });
-            }
-
-            this.dashboard.setParameter(this.parameter, options);
-        } else {
-            this.dashboard.setParameter(this.parameter, _parameter);
-        }
-    };
-
+    initSelect($, Logger);
 
     var BootstrapMultiselectPentahoFilterComponent = SelectMultiComponent.extend({
 
@@ -1853,8 +1730,9 @@ define([
 
             if (typeof this.postExecution == "function") {
                 this.postExecution();
-                this.trigger('cdf cdf:postExecution', this);
             }
+            this.trigger('cdf cdf:postExecution', this);
+            this.isDataPush = false;
 
             // update preChange function add the preChangeSelect function
             if (typeof this.preChange == "function") {
@@ -1865,11 +1743,11 @@ define([
                         return preChangeSelect.call(this, newChoice);
                     else
                         return preChangeSelect.call(this, userNewChoice);
-                }
+                };
             } else {
                 this.preChange = function(newChoice) {
                     return preChangeSelect.call(this, newChoice);
-                }
+                };
             }
 
         },

@@ -36,14 +36,14 @@
         prefix = requirePaths['bootstrap-multiselect-pentaho-filter/components'] = 'amd-components';
 
     } else if (typeof CONTEXT_PATH !== "undefined") { // production
-        prefix = requirePaths['bootstrap-multiselect-pentaho-filter/components'] = CONTEXT_PATH + 'api/repos/bootstrap-multiselect-pentaho-filter/amd-components';
+        prefix = requirePaths['bootstrap-multiselect-pentaho-filter/components'] = CONTEXT_PATH + 'api/repos/bootstrap-multiselect-pentaho-filter';
 
     } else if (typeof FULL_QUALIFIED_URL != "undefined") { // embedded production
-        prefix = requirePaths['bootstrap-multiselect-pentaho-filter/components'] = FULL_QUALIFIED_URL + 'api/repos/bootstrap-multiselect-pentaho-filter/amd-components';
+        prefix = requirePaths['bootstrap-multiselect-pentaho-filter/components'] = FULL_QUALIFIED_URL + 'api/repos/bootstrap-multiselect-pentaho-filter';
 
     }
 
-    requirePaths['bootstrap-multiselect-pentaho-filter/components/BootstrapMultiselectPentahoFilterComponent'] = prefix + '/BootstrapMultiselectPentahoFilter/BootstrapMultiselectPentahoFilterComponent';
+    requirePaths['bootstrap-multiselect-pentaho-filter/components/BootstrapMultiselectPentahoFilterComponent'] = prefix + '/amd-components/BootstrapMultiselectPentahoFilter/BootstrapMultiselectPentahoFilterComponent';
     requireShims['bootstrap-multiselect-pentaho-filter/components/BootstrapMultiselectPentahoFilterComponent'] = {
         exports: "$",
         deps: [
