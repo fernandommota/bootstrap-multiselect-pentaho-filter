@@ -3,9 +3,9 @@
     <Name>Bootstrap Multiselect Pentaho Filter Component</Name>
     <IName>BootstrapMultiselectPentahoFilterComponent</IName>
     <Description>Bootstrap Multiselect Pentaho Filter Component</Description>
-    <Category>SELECTORS</Category>
-    <CatDescription>Selects</CatDescription>
-    <Order>241</Order>
+    <Category>COMMUNITYCOMPONENTS</Category>
+    <CatDescription>Community Contributions</CatDescription>
+    <Order>800</Order>
     <Type>PalleteEntry</Type>
   </Header>
   <Contents>
@@ -26,7 +26,6 @@
       </Definition>
       <Property>postFetch</Property>
       <Property>valuesArray</Property>
-      <Property>useFirstValue</Property>
       <Property>valueAsId</Property>
       <Property>size</Property>
       <Property>externalPlugin</Property>
@@ -45,6 +44,19 @@
         <Dependency src="legacy/bootstrap-multiselect.js" version="0.9.15">BootstrapMultiselect</Dependency>
       </Dependencies>
       <CustomProperties>
+        <DesignerProperty>
+          <Header>
+            <Name>valueAsId</Name>
+            <Parent>BaseProperty</Parent>
+            <DefaultValue>"False"</DefaultValue>
+            <Description>valueAsId</Description>
+            <Tooltip>If false, uses the first column of the dataset as id. If true, Use the value as the id</Tooltip>
+            <InputType>Boolean</InputType>
+            <OutputType>Boolean</OutputType>
+            <Order>30</Order>
+            <Version>1.0</Version>
+          </Header>
+        </DesignerProperty>       
         <DesignerProperty>
           <Header>
             <Name>filterPlaceholderText</Name>
@@ -123,10 +135,10 @@
             <Version>1.0</Version>
           </Header>
           <Values>
-            <Value display="Use firstOrLastDefaultValues"></Value>
-            <Value display="All options">all</Value>
-            <Value display="First option">first</Value>
-            <Value display="Last option">last</Value>
+            <Value display="All">all</Value>
+            <Value display="First">first</Value>
+            <Value display="Last">last</Value>
+            <Value display="firstOrLastDefaultValues"></Value>
           </Values>
         </DesignerProperty>
         <DesignerProperty>
