@@ -184,7 +184,7 @@ if (typeof require === "function" && typeof require.specified === "function") {
             // update postFetch function add the postFetchSelect function
             var userPostFetch = this.postFetch;
             this.postFetch = function(data) {
-                if (typeof this.postFetch == "function") {
+                if (typeof userPostFetch == "function") {
                     var newData = userPostFetch(data);
                     data = (newData === undefined) ? data : newData;
 
