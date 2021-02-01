@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+	<cde-components>
+        <path>system/bootstrap-multiselect-pentaho-filter/components</path>
+        <path>bootstrap-multiselect-pentaho-filter/components</path>
+        <path>system/bootstrap-multiselect-pentaho-filter/amd-components</path>
+        <path>bootstrap-multiselect-pentaho-filter/amd-components</path>
+	</cde-components>
+</settings>
