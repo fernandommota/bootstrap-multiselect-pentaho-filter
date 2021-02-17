@@ -183,17 +183,21 @@ if (typeof require === "function" && typeof require.specified === "function") {
 
             // update postFetch function add the postFetchSelect function
             var userPostFetch = this.postFetch;
+            // save the reference to the component to be used in the next function
+            var mySelf = this;
+
             this.postFetch = function(data) {
+
                 if (typeof userPostFetch == "function") {
                     var newData = userPostFetch(data);
                     data = (newData === undefined) ? data : newData;
 
                     //call the plugin
-                    postFetchSelect.call(this, data);
+                    postFetchSelect.call(mySelf, data);
 
-                    this.trigger('cdf cdf:postFetch', this, data);
+                    mySelf.trigger('cdf cdf:postFetch', mySelf, data);
                 } else {
-                    postFetchSelect.call(this, data);
+                    postFetchSelect.call(mySelf, data);
                 }
 
                 return data;
@@ -228,19 +232,22 @@ if (typeof require === "function" && typeof require.specified === "function") {
             this.trigger('cdf cdf:postExecution', this);
             this.isDataPush = false;
 
+            // save the reference to the component to be used in the next function
+            var mySelf = this;
+
             // update preChange function add the preChangeSelect function
             if (typeof this.preChange == "function") {
                 var userPreChange = this.preChange;
                 this.preChange = function(newChoice) {
                     userNewChoice = userPreChange(newChoice);
                     if (typeof userNewChoice === 'undefined')
-                        return preChangeSelect.call(this, newChoice);
+                        return preChangeSelect.call(mySelf, newChoice);
                     else
-                        return preChangeSelect.call(this, userNewChoice);
+                        return preChangeSelect.call(mySelf, userNewChoice);
                 }
             } else {
-                this.preChange = function(newChoice) {
-                    return preChangeSelect.call(this, newChoice);
+                mySelf.preChange = function(newChoice) {
+                    return preChangeSelect.call(mySelf, newChoice);
                 }
             }
 
