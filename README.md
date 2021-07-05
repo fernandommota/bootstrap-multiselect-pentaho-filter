@@ -10,14 +10,7 @@ If the user select the all options available, the request value parameter will b
 
 ### Setup
 
-#### Compatibility
-
-- Versions with support to RequireJS starts from 0.4;
-- Versions without support to RequireJS ended to [0.3](https://github.com/fernandommota/bootstrap-multiselect-pentaho-filter/tree/0.3).
-
-#### Inside repository (jackrabbit persistence)
-
-- Download the repository as a zip, and rename the folder:
+- Download the repository as a zip or clone the repository from GitHub, and rename the folder:
 
   - From
 
@@ -27,85 +20,37 @@ If the user select the all options available, the request value parameter will b
 
   bootstrap-multiselect-pentaho-filter
 
-- Compress the folder _bootstrap-multiselect-pentaho-filter_ in a zip file the folder and import to your instance, the following example is consider the path _public/bootstrap-multiselect-pentaho-filter_.
-- Inside your CDE dashboard insert the file _js/bootstrap-multiselect-pentaho-filter.js_ path as a "Javascript External File" resource:
+The final path should be as follow:
 
 ```JavaScript
-${solution:bootstrap-multiselect/js/bootstrap-multiselect-pentaho-filter.js}
+pentaho-solutions/system/bootstrap-multiselect-pentaho-filter/
 ```
-
-- It's necessary maintain the property name as _bootstrapMultiselectPentahoFilter_, this will be load as a variable with the functions of plugin:
-  <img src="./resources/repository_map_example.png" alt="Example of insert bootstrap-multiselect-pentaho-filter.js" title="Example of insert bootstrap-multiselect-pentaho-filter.js" align="center" />
-
-- In case the path of files be different of default example, update the shim configuration at _bootstrap-multiselect-pentaho-filter.js_ to new path:
-  <img src="./resources/repository_shim_example.png" alt="Example of shim configuration" title="Example of shim configuration" align="center" />
-
-#### Static files approach with AppBuilder/Sparkl (filesystem)
-
-Very similar with approach above, in this case it's necessary change the paths.
-
-- Consider a plugin made with AppBuilder named as _dashboard_ and the folder _bootstrap-multiselect-pentaho-filter_ at path _pentaho-solutions/system/dashboard/static/custom/js/libs/bootstrap-multiselect-pentaho-filter_
-- Inside your CDE dashboard insert the file _js/bootstrap-multiselect-pentaho-filter.js_ path as a "Javascript External File" resource:
-
-```JavaScript
-../../../../api/repos/dashboard/static/custom/js/libs/bootstrap-multiselect-pentaho-filter/js/bootstrap-multiselect-pentaho-filter.js
-```
-
-- It's necessary maintain the property name as _bootstrapMultiselectPentahoFilter_, this will be load as a variable with the functions of plugin:
-  <img src="./resources/repository_map_sparkl_example.png" alt="Example of insert bootstrap-multiselect-pentaho-filter.js" title="Example of insert bootstrap-multiselect-pentaho-filter.js" align="center" />
-
-- Update the path files of shim configuration at _bootstrap-multiselect-pentaho-filter.js_:
-  <img src="./resources/repository_shim_sparkl_example.png" alt="Example of shim configuration" title="Example of shim configuration" align="center" />
-
-### Usage
-
-- Add the follow function in preExecution propertie of multiselect component in a Pentaho CDF/CDA/CDE dashboard:
-
-Ps. The variable _bootstrapMultiselectPentahoFilter_ now is used to call the internal functions of plugin.
-
-```JavaScript
-function preExecution(){
-    var obj = this;
-
-    obj.postExecution = function f(){
-        bootstrapMultiselectPentahoFilter.postExecutionSelect.call(
-            this
-            // Change to all member propertie of dimension
-            , '[Dimension Name].[All Member Name]'
-            // Change the labels about dimension
-            , 'Find dimension'
-            , 'Select a member'
-            , 'All members'
-            , ' - members selected'
-            // end labels about dimension
-	    )
-    }
-
-    obj.preChange = function (newChoice){
-        // Change to all member propertie of dimension
-        return bootstrapMultiselectPentahoFilter.preChangeSelect.call(this,  '[Dimension Name].[All Member Name]', newChoice);
-    };
-
-    obj.postFetch = function postFetch(result){
-    	// configure the option for set the default value of parameter
-        bootstrapMultiselectPentahoFilter.postFetchSelect.call(this, result, 'all');
-    };
-}
-```
+Restart the server.
 
 ### Options
 
-If the parameter of filter is empty is possible in preChange function to configure who options by default will be selected, the options are:
+#### allMemberName	
+
+- Set the allMemberName property value of your Mondrian Schema.
+
+#### allSelectedText
+- Set the label for all options is selected.
+
+#### filterPlaceholderText	
+- Set the label for search.
+
+#### nonSelectedText	
+- Set the label for none option is selected.
+
+#### nSelectedText
+- Set the label for multiple options is selected.
+
+#### useDefaultValue	
 
 - "all" - All options of multiselect will be selected.
 - "first" - The first option of multiselect will be selected.
-- "first-n" - The first n options of multiselect will be selected.
 - "last" - The last option of multiselect will be selected.
-- "last-n" - The last n options of multiselect will be selected.
+- "firstOrLastDefaultValues" - The "firstOrLastDefaultValues" property is enabled.
 
-```JavaScript
-    //example for default select the last 4 options in multiselect element.
-    obj.postFetch = function postFetch(result){
-        postFetchSelect.call(this, result, 'last-4');
-    };
-```
+### firstOrLastDefaultValues
+- Set the number os options that will be selected, positive values for first options and negative value for last options.
